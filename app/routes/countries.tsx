@@ -55,16 +55,19 @@ const Countries = ({ loaderData }: Route.ComponentProps) => {
                     <option value={Continent.SouthAmerica}>{Continent.SouthAmerica}</option>
                 </select>
             </div>
-            <ul>
-                {filteredCountries.map((country: Country) => (
-                    <li key={country.name.official}>
-                        <Link to={`/countries/${country.name.common}`} >{country.name.common}</Link>
-                        <div>
-                            Region: {country.continents[0]} | Population: {country.population}
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            {filteredCountries.length === 0 ? <div>No countries match your filters.</div> :
+                <ul>
+                    {filteredCountries.map((country: Country) => (
+                        <li key={country.name.official}>
+                            <Link to={`/countries/${country.name.common}`} >{country.name.common}</Link>
+                            <div>
+                                Region: {country.continents[0]} | Population: {country.population}
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            }
+
         </div>
     );
 };
