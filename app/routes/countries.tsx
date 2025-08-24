@@ -1,5 +1,5 @@
 import type { Route } from "./+types/countries";
-import type { Country } from '../types/index';
+import { Continent, type Country } from '../types/index';
 import { Link } from "react-router";
 import { useState } from "react";
 
@@ -26,10 +26,16 @@ const Countries = ({ loaderData }: Route.ComponentProps) => {
 
     const countries = loaderData as Country[];
 
-    const [search, setSearch ] = useState<string>("");
+    const [search, setSearch] = useState<string>("");
+    const [continent, setContinent] = useState<string>("");
+
+
     const filteredCountries = countries.filter((country: Country) => {
+
+        const matchesContinent = !continent || country.continents[0].toLowerCase() === continent.toLowerCase();
+
         const matchesSearch = !search || country.name.common.toLowerCase().includes(search.toLowerCase());
-        return matchesSearch  
+        return matchesSearch && matchesContinent;
     });
 
 
@@ -39,6 +45,15 @@ const Countries = ({ loaderData }: Route.ComponentProps) => {
 
             <div>
                 <input type="text" placeholder="Search by name..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                <select value={continent} onChange={(e) => setContinent(e.target.value)} >
+                    <option value="">All regions</option>
+                    <option value={Continent.Africa}>{Continent.Africa}</option>
+                    <option value={Continent.Asia}>{Continent.Asia}</option>
+                    <option value={Continent.Europe}>{Continent.Europe}</option>
+                    <option value={Continent.NorthAmerica}>{Continent.NorthAmerica}</option>
+                    <option value={Continent.Oceania}>{Continent.Oceania}</option>
+                    <option value={Continent.SouthAmerica}>{Continent.SouthAmerica}</option>
+                </select>
             </div>
             <ul>
                 {filteredCountries.map((country: Country) => (
