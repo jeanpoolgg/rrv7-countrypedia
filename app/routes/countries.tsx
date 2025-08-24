@@ -1,6 +1,7 @@
 import type { Route } from "./+types/countries";
 import type { Country } from '../types/index';
 import { Link } from "react-router";
+import { useState } from "react";
 
 export async function clientLoader(): Promise<Country[]> {
     const res = await fetch(
@@ -19,17 +20,28 @@ export function HydrateFallback() {
 
 const Countries = ({ loaderData }: Route.ComponentProps) => {
 
-
     if (!loaderData) {
         return <p>No hay datos</p>;
     }
 
     const countries = loaderData as Country[];
 
+    const [search, setSearch ] = useState<string>("");
+    const filteredCountries = countries.filter((country: Country) => {
+        const matchesSearch = !search || country.name.common.toLowerCase().includes(search.toLowerCase());
+        return matchesSearch  
+    });
+
+
     return (
         <div>
+            <h2>Countries</h2>
+
+            <div>
+                <input type="text" placeholder="Search by name..." value={search} onChange={(e) => setSearch(e.target.value)} />
+            </div>
             <ul>
-                {countries.map((country: Country) => (
+                {filteredCountries.map((country: Country) => (
                     <li key={country.name.official}>
                         <Link to={`/countries/${country.name.common}`} >{country.name.common}</Link>
                         <div>
