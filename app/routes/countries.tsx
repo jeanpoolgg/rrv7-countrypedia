@@ -19,57 +19,74 @@ export function HydrateFallback() {
 
 
 const Countries = ({ loaderData }: Route.ComponentProps) => {
-
     if (!loaderData) {
-        return <p>No hay datos</p>;
+      return <p className="text-center text-red-500 mt-10">No hay datos</p>;
     }
-
+  
     const countries = loaderData as Country[];
-
     const [search, setSearch] = useState<string>("");
     const [continent, setContinent] = useState<string>("");
-
-
+  
     const filteredCountries = countries.filter((country: Country) => {
-
-        const matchesContinent = !continent || country.continents[0].toLowerCase() === continent.toLowerCase();
-
-        const matchesSearch = !search || country.name.common.toLowerCase().includes(search.toLowerCase());
-        return matchesSearch && matchesContinent;
+      const matchesContinent = !continent || country.continents[0].toLowerCase() === continent.toLowerCase();
+      const matchesSearch = !search || country.name.common.toLowerCase().includes(search.toLowerCase());
+      return matchesSearch && matchesContinent;
     });
-
-
+  
     return (
-        <div>
-            <h2>Countries</h2>
-
-            <div>
-                <input type="text" placeholder="Search by name..." value={search} onChange={(e) => setSearch(e.target.value)} />
-                <select value={continent} onChange={(e) => setContinent(e.target.value)} >
-                    <option value="">All regions</option>
-                    <option value={Continent.Africa}>{Continent.Africa}</option>
-                    <option value={Continent.Asia}>{Continent.Asia}</option>
-                    <option value={Continent.Europe}>{Continent.Europe}</option>
-                    <option value={Continent.NorthAmerica}>{Continent.NorthAmerica}</option>
-                    <option value={Continent.Oceania}>{Continent.Oceania}</option>
-                    <option value={Continent.SouthAmerica}>{Continent.SouthAmerica}</option>
-                </select>
-            </div>
-            {filteredCountries.length === 0 ? <div>No countries match your filters.</div> :
-                <ul>
-                    {filteredCountries.map((country: Country) => (
-                        <li key={country.name.official}>
-                            <Link to={`/countries/${country.name.common}`} >{country.name.common}</Link>
-                            <div>
-                                Region: {country.continents[0]} | Population: {country.population}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            }
-
+      <div className="max-w-6xl mx-auto p-6">
+        <h2 className="text-3xl font-bold text-center mb-6 text-cyan-700">Countries</h2>
+  
+        <div className="flex flex-col md:flex-row gap-4 mb-8 justify-center items-center">
+          <input
+            type="text"
+            placeholder="Search by name..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full md:w-64 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          />
+          <select
+            value={continent}
+            onChange={(e) => setContinent(e.target.value)}
+            className="w-full md:w-64 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+          >
+            <option value="">All regions</option>
+            <option value={Continent.Africa}>{Continent.Africa}</option>
+            <option value={Continent.Asia}>{Continent.Asia}</option>
+            <option value={Continent.Europe}>{Continent.Europe}</option>
+            <option value={Continent.NorthAmerica}>{Continent.NorthAmerica}</option>
+            <option value={Continent.Oceania}>{Continent.Oceania}</option>
+            <option value={Continent.SouthAmerica}>{Continent.SouthAmerica}</option>
+          </select>
         </div>
+  
+        {filteredCountries.length === 0 ? (
+          <div className="text-center text-gray-500 font-semibold">No countries match your filters.</div>
+        ) : (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredCountries.map((country: Country) => (
+              <li
+                key={country.name.official}
+                className="bg-white shadow-md rounded-lg p-4 hover:shadow-xl transition-shadow duration-300"
+              >
+                <Link
+                  to={`/countries/${country.name.common}`}
+                  className="text-lg font-semibold text-cyan-600 hover:underline"
+                >
+                  {country.name.common}
+                </Link>
+                <div className="mt-2 text-gray-600">
+                  <span className="font-medium">Region:</span> {country.continents[0]} |{" "}
+                  <span className="font-medium">Population:</span>{" "}
+                  {country.population.toLocaleString()}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     );
-};
+  };
+  
 
 export default Countries
