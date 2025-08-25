@@ -1,7 +1,7 @@
 import type { CountryPage } from "~/types/country";
 import type { Route } from "./+types/country";
 
-export async function clientLoader({ params }: Route.LoaderArgs) {
+export async function loader({ params }: Route.LoaderArgs) {
   const countryName = params.countryName;
   const res = await fetch(
     `https://restcountries.com/v3.1/name/${countryName}?fullText=true`

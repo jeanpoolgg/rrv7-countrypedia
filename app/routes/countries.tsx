@@ -3,7 +3,7 @@ import { Continent, type Country } from '../types/index';
 import { Link } from "react-router";
 import { useState } from "react";
 
-export async function clientLoader(): Promise<Country[]> {
+export async function loader(): Promise<Country[]> {
     const res = await fetch(
         "https://restcountries.com/v3.1/independent?status=true&fields=name,continents,population"
     );
