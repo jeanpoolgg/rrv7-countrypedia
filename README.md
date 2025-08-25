@@ -1,87 +1,80 @@
-# Welcome to React Router!
+# 🌍 Countrypedia
 
-A modern, production-ready template for building full-stack React applications using React Router.
+**Countrypedia** is a web application built with **React Router v7 in Framework Mode**, using **SSR (Server-Side Rendering)** to deliver SEO-friendly pages with preloaded data from the **REST Countries API**.  
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+The app lets you explore information about countries around the world with search, filtering, and dynamic routes, along with a responsive design powered by **Tailwind CSS**.  
 
-## Features
+---
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## ✨ Features
 
-## Getting Started
+- ⚡ **SSR with React Router Framework** → content is pre-rendered in the initial HTML, improving SEO and load times.  
+- 🔎 **Search and filter** countries by name and continent.  
+- 📄 **Dynamic routes** for individual country details.  
+- 🎨 **Responsive design** using **Tailwind CSS**.  
+- 🛠️ **TypeScript** for type safety and maintainability.  
+- 🧩 **Navbar and main pages** (Home, Countries, About, Country Detail).  
 
-### Installation
+---
 
-Install the dependencies:
+## 🚀 Tech Stack
+
+- [React Router v7 (Framework Mode)](https://reactrouter.com/) – routing, SSR, and loaders.  
+- [Tailwind CSS](https://tailwindcss.com/) – styling and responsive design.  
+- [TypeScript](https://www.typescriptlang.org/) – static typing.  
+- [REST Countries API](https://restcountries.com/) – real-time country data.  
+
+---
+
+## 📦 Installation
+
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/jeanpoolgg/rrv7-countrypedia.git
+cd rrv7-countrypedia
 npm install
 ```
 
-### Development
+## ▶️ Available Scripts
 
-Start the development server with HMR:
-
+Start the development server:
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
+Build the app for production:
 ```bash
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
+Serve the production build:
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+npm start
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+## 🌐 Usage
 
-## Styling
+- Visit the Home page for an introduction.
+- Go to the Countries section to list all countries.
+- Use filters (name, continent) to refine results.
+- Click on a country to see its detail page.
+- Check out the About page to learn more about the project.
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+## 📸 Preview
+![Home of CountryPedia](photo-countrypedia.png)
 
----
 
-Built with ❤️ using React Router.
+## 📖 Aprendizaje
+
+This project is great for:
+
+- Practicing React Router v7 Framework Mode with SSR.
+- Understanding the difference between SSR and SPA in terms of SEO.
+- Integrating a real-world public API into a modern app.
+- Building fast and responsive UIs with Tailwind.
+
+
+## 👨‍💻 Autor
+
+Built with ❤️ by jeanpoolgg
